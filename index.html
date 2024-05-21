@@ -19,15 +19,15 @@
         .image {
             width: 300px; /* Lebar gambar yang lebih besar */
             height: auto;
-            margin-bottom: 60px; /* Tambahkan margin bottom yang lebih besar */
+            margin-bottom: 40px; /* Tambahkan margin bottom yang lebih besar */
         }
         .title {
             font-size: 24px;
             color: #2b8ac6;
-            margin-bottom: 40px; /* Tambahkan margin bottom yang lebih besar */
+            margin-bottom: 30px; /* Tambahkan margin bottom yang lebih besar */
         }
         .links {
-            margin-top: 60px; /* Tambahkan margin top yang lebih besar */
+            margin-top: 40px; /* Tambahkan margin top yang lebih besar */
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -38,7 +38,7 @@
             font-size: 18px;
         }
         .network-info {
-            margin-top: 30px; /* Tambahkan margin top yang lebih besar */
+            margin-top: 20px; /* Tambahkan margin top yang lebih besar */
             font-size: 18px;
         }
         .live-blocks {
@@ -50,14 +50,28 @@
             font-weight: bold;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('http://144.76.208.7:26657/abci_info')
+                .then(response => response.json())
+                .then(data => {
+                    const blockHeight = data.result.response.last_block_height;
+                    document.getElementById('block-number').textContent = blockHeight;
+                })
+                .catch(error => {
+                    console.error('Error fetching block height:', error);
+                    document.getElementById('block-number').textContent = 'Error';
+                });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="title">KUCING GARONG ฅ^•ﻌ•^ฅ</div>
+        <div class="title">KUCING GARONG BERWARNA BIRU</div>
         <img src="https://i.imgur.com/kKziAKj.jpeg" alt="Kucing Garong" class="image">
         <div class="network-info">
             <span class="live-blocks">Live Blocks:</span><br>
-            <span class="block-number">200000</span>
+            <span class="block-number" id="block-number">Loading...</span>
         </div>
         <div class="links">
             <a href="https://twitter.com/Katsura900" target="_blank">Twitter</a>
