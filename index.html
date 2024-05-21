@@ -53,7 +53,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             fetch('http://144.76.208.7:26657/abci_info')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const blockHeight = data.result.response.last_block_height;
                     document.getElementById('block-number').textContent = blockHeight;
@@ -77,8 +82,4 @@
             <a href="https://twitter.com/Katsura900" target="_blank">Twitter</a>
             <a href="https://github.com/kucinggarongxyz" target="_blank">GitHub</a>
             <a href="https://github.com/kucinggarongxyz" target="_blank">RPC Endpoint</a>
-            <a href="https://app.testnet.initia.xyz/stake?withValidator=initvaloper1wz22dqhglpvxs5psnp3txzmpy3jtwxpa8ua76a" target="_blank">Stake Your Init</a>
-        </div>
-    </div>
-</body>
-</html>
+            <a href="https://app.testnet.initia.xyz/stake?
