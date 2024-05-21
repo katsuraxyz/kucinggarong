@@ -925,11 +925,12 @@ h1, h2, h3, h4, h5, h6, figure {
     width: 100% !important;
   }
 }
+
 #fh5co-consult .video {
   display: table;
   width: 50%;
   background-size: cover;
-  background-position: center center;
+  background-position: top; /* Memastikan bagian atas gambar muncul */
   background-repeat: no-repeat;
   position: relative;
   display: -webkit-box;
@@ -941,6 +942,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -webkit-flex-wrap: wrap;
   -moz-flex-wrap: wrap;
 }
+
 @media screen and (max-width: 768px) {
   #fh5co-consult .video {
     display: none;
