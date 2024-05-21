@@ -3,83 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kucing Garong Homepage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            margin-top: 50px;
-            padding: 20px; /* Tambahkan padding untuk jarak */
-        }
-        .image {
-            width: 300px; /* Lebar gambar yang lebih besar */
-            height: auto;
-            margin-bottom: 40px; /* Tambahkan margin bottom yang lebih besar */
-        }
-        .title {
-            font-size: 24px;
-            color: #2b8ac6;
-            margin-bottom: 30px; /* Tambahkan margin bottom yang lebih besar */
-        }
-        .links {
-            margin-top: 40px; /* Tambahkan margin top yang lebih besar */
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .links a {
-            text-decoration: none;
-            color: #2b8ac6;
-            font-size: 18px;
-        }
-        .network-info {
-            margin-top: 20px; /* Tambahkan margin top yang lebih besar */
-            font-size: 18px;
-        }
-        .live-blocks {
-            font-size: 28px;
-            color: black; /* Ubah warna teks Live Blocks menjadi hitam */
-        }
-        .block-number {
-            font-size: 36px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Last Block Height</title>
+</head>
+<body>
+    <h1>Last Block Height</h1>
+    <p id="block-height">Loading...</p>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             fetch('http://144.76.208.7:26657/abci_info')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     const blockHeight = data.result.response.last_block_height;
-                    document.getElementById('block-number').textContent = blockHeight;
+                    document.getElementById('block-height').textContent = blockHeight;
                 })
                 .catch(error => {
-                    console.error('Error fetching block height:', error);
-                    document.getElementById('block-number').textContent = 'Error ewe';
+                    console.error('Error fetching data:', error);
+                    document.getElementById('block-height').textContent = 'Error loading data';
                 });
         });
     </script>
-</head>
-<body>
-    <div class="container">
-        <div class="title">KUCING GARONG BERWARNA BIRU</div>
-        <img src="https://i.imgur.com/kKziAKj.jpeg" alt="Kucing Garong" class="image">
-        <div class="network-info">
-            <span class="live-blocks">Live Blocks:</span><br>
-            <span class="block-number" id="block-number">Loading...</span>
-        </div>
-        <div class="links">
-            <a href="https://twitter.com/Katsura900" target="_blank">Twitter</a>
-            <a href="https://github.com/kucinggarongxyz" target="_blank">GitHub</a>
-            <a href="https://github.com/kucinggarongxyz" target="_blank">RPC Endpoint</a>
-            <a href="https://app.testnet.initia.xyz/stake?
+</body>
+</html>
